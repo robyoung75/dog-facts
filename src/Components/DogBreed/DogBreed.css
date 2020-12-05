@@ -1,0 +1,22 @@
+.dogBreed {
+  display: flex;
+}
+
+.dogBreed__left {
+  display: flex;
+}
+
+.dogBreed__right {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.dogBreed__right > h3 > span {
+  font-weight: normal;
+}
+
+.dogBreed > img {
+  width: 75%;
+  height: auto;
+}
