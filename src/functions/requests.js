@@ -1,12 +1,11 @@
 // api request function
 
-// get breed
-let getDogBreed = async (setDogBreed) => {
+// get random breed
+const getRandomBreed = async () => {
   try {
-    let response = await fetch("https://api.thedogapi.com/v1/images/search");
-    let jsonResponse = await response.json();
-
-    if (jsonResponse) {
+    let response = await fetch("https://api.thedogapi.com/v1/images/search");    
+    if (response.ok) {
+      let jsonResponse = await response.json();
       return jsonResponse;
     }
   } catch (error) {
@@ -14,8 +13,20 @@ let getDogBreed = async (setDogBreed) => {
   }
 };
 
-function assEater() {
-  console.log("I eat ass");
+// get breed list, will populate the dropdown list in the app.
+const getBreedList = async () => {
+  try {
+    let response = await fetch("https://dog.ceo/api/breeds/list/all");
+    if (response.ok) {
+      let jsonResponse = await response.json();
+      return jsonResponse;
+    }
+
+  } catch(error) {
+    console.log(error);
+  }
 }
 
-export { getDogBreed, assEater };
+
+
+export { getRandomBreed, getBreedList };

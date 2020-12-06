@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import DogBreed from "../DogBreed/DogBreed";
 
-function DogList({ breeds }) {
+function DogList({ randomBreed }) {
   return (
     <div className="dogList">
-      {breeds
-        ? breeds.map((breed) => (
+      {randomBreed
+        ? randomBreed.map((breed) => (
             <DogBreed
               key={breed.id}
               url={breed.url}
