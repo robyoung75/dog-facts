@@ -1,8 +1,8 @@
 .dog {
   display: flex;
   flex-direction: column;
-  background-color: grey;
-  justify-content: center;
+  
+  
 }
 
 .dog__button {

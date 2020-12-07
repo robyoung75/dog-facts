@@ -4,13 +4,13 @@ import "./DogBreed.css";
 function DogBreed({ id, url, newBreed }) {
   return (
     <div className="dogBreed">
-      <div className="dogBreed__left">
+     
         <img src={url} alt="dog image" />
-      </div>
+      
 
       {newBreed
         ? newBreed.map((breed) => (
-            <div className="dogBreed__right" key={breed.id}>
+            <div className="dogBreed__bottom" key={breed.id}>
               <h1>{breed.name}</h1>
               <h2>{breed.breed_group} Dog</h2>
               <h3>

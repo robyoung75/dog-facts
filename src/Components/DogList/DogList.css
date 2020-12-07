@@ -1,32 +1,13 @@
-.dogBreed {
+.dogList {
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
-  
-  
-  
 }
 
-
-
-.dogBreed__bottom {
-  width: 80%;
-  
-  padding: 10px;
- 
-  
-}
-
-.dogBreed__bottom > h3 > span {
-  font-weight: lighter;
-}
-
-.dogBreed > img {
+.dogList__image {
   margin: 1rem;
   width: 80%;
   height: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: .5rem;
-  
 }
