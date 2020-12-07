@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DogButtons({ handleClick, handleChange, breedList, breedImages }) {
+function DogButtons({ handleClick, handleChange, breedList, breedImages, handleFullAccess }) {
   const classes = useStyles();
   const [selection, setSelection] = useState();
 
@@ -31,6 +31,10 @@ function DogButtons({ handleClick, handleChange, breedList, breedImages }) {
 
         <Button variant="contained" onClick={handleClick}>
           Search Random Dog
+        </Button>
+
+        <Button variant="contained" onClick={handleFullAccess}>
+          full access
         </Button>
       </div>
     </div>

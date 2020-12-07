@@ -6,18 +6,30 @@ import {
   getRandomBreed,
   getBreedList,
   getBreedImages,
+  getFullAccess,
 } from "../../functions/requests";
 
 function Dog() {
   const [breedList, setBreedList] = useState();
   const [randomBreed, setRandomBreed] = useState();
   const [breedImages, setBreedImages] = useState();
+  const [fullAccess, setFullAccess] = useState();
 
   useEffect(async () => {
     setBreedList(null);
     let data = await getBreedList();
     setBreedList(data.message);
+    
+    
   }, []);
+
+  async function handleFullAccess(e) {
+    e.preventDefault()
+    setFullAccess(null);
+    let data = await getFullAccess();
+    setFullAccess(data)
+    console.log(data)
+  }
 
   async function handleClick(e) {
     e.preventDefault();
@@ -38,6 +50,7 @@ function Dog() {
        <DogButtons
         handleClick={handleClick}
         handleChange={handleChange}
+        handleFullAccess={handleFullAccess}
         breedList={breedList}
         breedImages={breedImages}
         setBreedImages={setBreedImages}
@@ -49,3 +62,6 @@ function Dog() {
 }
 
 export default Dog;
+
+
+

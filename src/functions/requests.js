@@ -1,5 +1,21 @@
 // api request function
 
+const apiKey = "9d214f6b-6207-4c43-bc89-3efa18e2b42f"
+const URL = "https://thedogapi.com/v1/images?"
+
+// access db
+const getFullAccess = async () => {
+  try {
+    let response = await fetch("https://api.thedogapi.com/v1/breeds")
+    if (response.ok) {
+      let jsonResponse = await response.json();
+      return jsonResponse;
+    }
+  } catch(error) {
+    console.log(error)
+  }
+}
+// https://thedogapi.com/v1/images?api_key=9d214f6b-6207-4c43-bc89-3efa18e2b42f
 // get random breed
 const getRandomBreed = async () => {
   try {
@@ -38,4 +54,4 @@ const getBreedImages = async (targetValue) => {
   }
 };
 
-export { getRandomBreed, getBreedList, getBreedImages };
+export { getRandomBreed, getBreedList, getBreedImages, getFullAccess };
