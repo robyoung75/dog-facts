@@ -19,7 +19,7 @@ function DogBreed({ id, url, newBreed }) {
               <h3>
                 Breed Temperament: <span>{breed.temperament}</span>
               </h3>
-              <h3>Life span: {breed.life_span}</h3>
+              <h3>Life span: <span>{breed.life_span}</span></h3>
             </div>
           ))
         : null}

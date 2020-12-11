@@ -1,21 +1,21 @@
-.dogBreed {
+.specificDogBreed {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
 }
 
-.dogBreed__bottom {
+.specificDogBreed__bottom {
   width: 80%;
 
   padding: 10px;
 }
 
-.dogBreed__bottom > h3 > span {
+.specificDogBreed__bottom > h3 > span {
   font-weight: lighter;
 }
 
-.dogBreed > img {
+.specificDogBreed > img {
   margin: 1rem;
   width: 80%;
   height: auto;
