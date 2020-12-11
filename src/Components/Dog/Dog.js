@@ -3,65 +3,60 @@ import DogButtons from "../DogButtons/DogButtons";
 import DogList from "../DogList/DogList";
 import "./Dog.css";
 import {
-  getRandomBreed,
-  getBreedList,
-  getBreedImages,
-  getFullAccess,
+  axiosGetAllBreeds,
+  axiosGetBreedByName,
+  axiosGetAllImages,
+  axiosGetRandomBreed,
 } from "../../functions/requests";
 
 function Dog() {
-  const [breedList, setBreedList] = useState();
-  const [randomBreed, setRandomBreed] = useState();
-  const [breedImages, setBreedImages] = useState();
-  const [fullAccess, setFullAccess] = useState();
+  const [axiosAllBreeds, setAxiosAllBreeds] = useState();
+  const [axiosBreedByName, setAxiosBreedByName] = useState();
+  const [axiosAllImages, setAxiosAllImages] = useState();
+  const [axiosRandomBreed, setAxiosRandomBreed] = useState();
 
   useEffect(async () => {
-    setBreedList(null);
-    let data = await getBreedList();
-    setBreedList(data.message);
-    
+    // setBreedList returns a fairly useless list of dog but no info just a
+    // list. Used to populate the dropdown menu Probably can set this with full
+    // access.
+
+    let reqAllBreeds = await axiosGetAllBreeds;
+    setAxiosAllBreeds(reqAllBreeds.data);
+
+    let reqBreedByName = await axiosGetBreedByName;
+    setAxiosBreedByName(reqBreedByName);
+
+    let reqAllImages = await axiosGetAllImages;
+    setAxiosAllImages(reqAllImages);
+
+    let reqRandomBreed = await axiosGetRandomBreed();
+    setAxiosRandomBreed(reqRandomBreed);
+
     
   }, []);
 
-  async function handleFullAccess(e) {
-    e.preventDefault()
-    setFullAccess(null);
-    let data = await getFullAccess();
-    setFullAccess(data)
-    console.log(data)
-  }
-
+  // function sets randomBreed. A click on search random dog button fires this
+  // fuction returning a random image and data about a dog.
   async function handleClick(e) {
-    e.preventDefault();
-    setRandomBreed(null);
-    setBreedImages(null);
-    let data = await getRandomBreed();
-    setRandomBreed(data);
+    e.preventDefault()    
+    let reqRandomBreed = await axiosGetRandomBreed();
+    setAxiosRandomBreed(reqRandomBreed);
   }
 
-  async function handleChange(e) {
-    setBreedImages(null);
-    setRandomBreed(null);
-    let data = await getBreedImages(e.target.value);
-    setBreedImages(data.message);
-  }
+  // function sets breedImages. A change in the dropdown menu
+  // fires this function returning 5 images.
+  async function handleChange(e) {}
+
   return (
     <div className="dog">
-       <DogButtons
+      <DogButtons
         handleClick={handleClick}
         handleChange={handleChange}
-        handleFullAccess={handleFullAccess}
-        breedList={breedList}
-        breedImages={breedImages}
-        setBreedImages={setBreedImages}
+        axiosAllBreeds={axiosAllBreeds}
       />
-      <DogList randomBreed={randomBreed} breedImages={breedImages} />
-     
+      <DogList axiosRandomBreed={axiosRandomBreed}/>
     </div>
   );
 }
 
 export default Dog;
-
-
-

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -11,10 +10,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DogButtons({ handleClick, handleChange, breedList, breedImages, handleFullAccess }) {
+function DogButtons({ handleClick, handleChange, axiosAllBreeds }) {
   const classes = useStyles();
-  const [selection, setSelection] = useState();
-
 
   return (
     <div className="dogButtons">
@@ -22,19 +19,20 @@ function DogButtons({ handleClick, handleChange, breedList, breedImages, handleF
         <div className="dogButtons__formGroup">
           <h3>Drop Down</h3>
 
-          <select onChange={handleChange} value={selection}>
-            {breedList
+          <select onChange={handleChange}>
+            {/* {breedList
               ? Object.keys(breedList).map((breed) => <option key={breed}>{breed}</option>)
-              : "data is loading"}
+              : "data is loading"} */}
+            {axiosAllBreeds
+              ? axiosAllBreeds.map((item) => (
+                  <option key={item.name}>{item.name}</option>
+                ))
+              : null}
           </select>
         </div>
 
         <Button variant="contained" onClick={handleClick}>
           Search Random Dog
-        </Button>
-
-        <Button variant="contained" onClick={handleFullAccess}>
-          full access
         </Button>
       </div>
     </div>

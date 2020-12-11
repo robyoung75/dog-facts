@@ -1,25 +1,111 @@
 // api request function
 
-const apiKey = "9d214f6b-6207-4c43-bc89-3efa18e2b42f"
-const URL = "https://thedogapi.com/v1/images?"
+import axios from "axios";
+import cors from "cors";
 
-// access db
-const getFullAccess = async () => {
-  try {
-    let response = await fetch("https://api.thedogapi.com/v1/breeds")
-    if (response.ok) {
-      let jsonResponse = await response.json();
-      return jsonResponse;
-    }
-  } catch(error) {
-    console.log(error)
+const apiKey = "9d214f6b-6207-4c43-bc89-3efa18e2b42f";
+const URL = "https://thedogapi.com/v1/images?";
+
+const axiosGetAllBreeds = axios.get(
+  "https://api.thedogapi.com/v1/breeds?limit=200",
+  {
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
+    },
   }
-}
-// https://thedogapi.com/v1/images?api_key=9d214f6b-6207-4c43-bc89-3efa18e2b42f
-// get random breed
-const getRandomBreed = async () => {
+);
+
+const axiosGetBreedByName = axios.get(
+  "https://api.thedogapi.com/v1/breeds/search?q=bass",
+  {
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
+    },
+  }
+);
+
+// get all public images
+const axiosGetAllImages = axios.get(
+  `https://api.thedogapi.com/v1/images/search?limit=100`,
+  {
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
+    },
+  });
+
+// get a random image, dog api tutorial https://upmostly.com/tutorials/using-axios-with-react-api-requests
+// const axiosGetRandomBreed = axios
+//   .get("https://api.thedogapi.com/v1/images/search", {
+//     headers: {
+//       "Content-Type": "application/json",
+//       "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
+//     },
+//   }).then((response) => {
+//     return response.data
+//   }, (error) => {
+//     console.log(error)
+//   })
+
+  const axiosGetRandomBreed = async () => {
+    try {
+      let response = await fetch("https://api.thedogapi.com/v1/images/search");    
+      if (response.ok) {
+        let jsonResponse = await response.json();
+        return jsonResponse;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+
+const getBreedImages = async (targetValue, fullAccess, breedList) => {
   try {
-    let response = await fetch("https://api.thedogapi.com/v1/images/search");
+    if (targetValue === "afghan hound") {
+      targetValue = "hound";
+    } else if (targetValue === "african hunting dog") {
+      targetValue = "african";
+    } else if (targetValue === "airedale terrier") {
+      targetValue = "airedale";
+    } else if (targetValue === "alaskan husky") {
+      targetValue = "husky";
+    } else if (targetValue === "alaskan malamute") {
+      targetValue = "malamute";
+    } else if (targetValue === "american bulldog") {
+      // map bulldogs and make it random of the choice.
+      targetValue = "bulldog";
+    } else if (targetValue === "american eskimo dog") {
+      targetValue = "eskimo";
+    } else if (targetValue === "american eskimo dog (miniature)") {
+      targetValue = "eskimo";
+    } else if (targetValue === "american pit bull terrier") {
+      targetValue = "pitbull";
+    } else if (targetValue === "american staffordshire terrier") {
+      // map bull terrier for staffordshire
+      targetValue = "bullterrier";
+    } else if (targetValue === "appenzeller sennenhund") {
+      targetValue = "appenzeller";
+    } else if (targetValue === "australian cattle dog") {
+      targetValue = "cattledog";
+    } else if (targetValue === "australian kelpie") {
+      targetValue = "kelpie";
+    } else if (targetValue === "australian shepherd") {
+      // map australian
+      targetValue = "australian";
+    } else if (targetValue === "australian terrier") {
+      targetValue = "terrier";
+    } else if (targetValue === "basset bleu de gascogne") {
+      targetValue = "hound";
+    }
+
+    let response = await fetch(
+      `https://dog.ceo/api/breed/${targetValue}/images`
+    );
     if (response.ok) {
       let jsonResponse = await response.json();
       return jsonResponse;
@@ -29,29 +115,6 @@ const getRandomBreed = async () => {
   }
 };
 
-// get all breeds list.
-const getBreedList = async () => {
-  try {
-    let response = await fetch("https://dog.ceo/api/breeds/list/all");
-    if (response.ok) {
-      let jsonResponse = await response.json();
-      return jsonResponse;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-const getBreedImages = async (targetValue) => {
-  try {
-    let response = await fetch(`https://dog.ceo/api/breed/${targetValue}/images`);
-    if (response.ok) {
-      let jsonResponse = await response.json();
-      return jsonResponse;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export { getRandomBreed, getBreedList, getBreedImages, getFullAccess };
+export { axiosGetAllBreeds, axiosGetBreedByName, axiosGetAllImages, axiosGetRandomBreed };

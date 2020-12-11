@@ -3,19 +3,23 @@ import { getBreedImages } from "../../functions/requests";
 import DogBreed from "../DogBreed/DogBreed";
 import "./DogList.css";
 
-function DogList({ randomBreed, breedImages }) {
-  let imagesReduced = [];
-  if (breedImages) {
-    for (let i = 0; i < 5; i++) {
-      imagesReduced.push(breedImages[i]);
-    }
-    console.log(imagesReduced);
-  }
+function DogList({ axiosRandomBreed }) {
+  // let imagesReduced = [];
+  // if (breedImages) {
+  //   for (let i = 0; i < breedImages.length; i++) {
+  //     imagesReduced.push(breedImages[i]);
+  //   }
+  //   console.log(imagesReduced);
+  // }
+
+ 
+
+  
 
   return (
     <div className="dogList">
-      {randomBreed
-        ? randomBreed.map((breed) => (
+      {axiosRandomBreed
+        ? axiosRandomBreed.map((breed) => (
             <DogBreed
               key={breed.id}
               url={breed.url}
@@ -25,11 +29,11 @@ function DogList({ randomBreed, breedImages }) {
           ))
         : null}
 
-      {breedImages
+      {/* {breedImages
         ? imagesReduced.map((image) => (
             <img key={image} className="dogList__image" src={image}></img>
           ))
-        : null}
+        : null} */}
     </div>
   );
 }
