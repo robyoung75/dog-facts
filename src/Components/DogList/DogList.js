@@ -3,7 +3,7 @@ import { getBreedImages } from "../../functions/requests";
 import DogBreed from "../DogBreed/DogBreed";
 import "./DogList.css";
 
-function DogList({ randomBreed }) {
+function DogList({ randomBreed, axiosBreedByName, axiosAllImages }) {
   // let imagesReduced = [];
   // if (breedImages) {
   //   for (let i = 0; i < breedImages.length; i++) {
@@ -25,11 +25,24 @@ function DogList({ randomBreed }) {
           ))
         : null}
 
-      {/* {breedImages
-        ? imagesReduced.map((image) => (
-            <img key={image} className="dogList__image" src={image}></img>
+      {/* {axiosBreedByName
+        ? axiosBreedByName.map((image) => (
+            <>
+              <p>{image.name}</p>
+              <p>{image.bred_for}</p>
+              <p>{image.breed_group}</p>
+              <p>{image.life_span}</p>
+              <p>{image.temperment}</p>
+              <p>{image.id}</p>
+            </>
           ))
         : null} */}
+      <div>
+        {axiosBreedByName ?  <img src={axiosBreedByName.url} alt="test" /> : null }
+       
+        {axiosBreedByName ?  axiosBreedByName.breeds.map(breed => console.log(breed.name)) : null }
+   
+      </div>
     </div>
   );
 }
