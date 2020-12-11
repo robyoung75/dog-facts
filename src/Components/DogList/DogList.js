@@ -3,7 +3,7 @@ import { getBreedImages } from "../../functions/requests";
 import DogBreed from "../DogBreed/DogBreed";
 import "./DogList.css";
 
-function DogList({ axiosRandomBreed }) {
+function DogList({ randomBreed }) {
   // let imagesReduced = [];
   // if (breedImages) {
   //   for (let i = 0; i < breedImages.length; i++) {
@@ -12,14 +12,10 @@ function DogList({ axiosRandomBreed }) {
   //   console.log(imagesReduced);
   // }
 
- 
-
-  
-
   return (
     <div className="dogList">
-      {axiosRandomBreed
-        ? axiosRandomBreed.map((breed) => (
+      {randomBreed
+        ? randomBreed.map((breed) => (
             <DogBreed
               key={breed.id}
               url={breed.url}

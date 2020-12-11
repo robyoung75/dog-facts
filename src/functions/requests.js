@@ -34,35 +34,20 @@ const axiosGetAllImages = axios.get(
       "Content-Type": "application/json",
       "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
     },
-  });
+  }
+);
 
-// get a random image, dog api tutorial https://upmostly.com/tutorials/using-axios-with-react-api-requests
-// const axiosGetRandomBreed = axios
-//   .get("https://api.thedogapi.com/v1/images/search", {
-//     headers: {
-//       "Content-Type": "application/json",
-//       "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
-//     },
-//   }).then((response) => {
-//     return response.data
-//   }, (error) => {
-//     console.log(error)
-//   })
-
-  const axiosGetRandomBreed = async () => {
-    try {
-      let response = await fetch("https://api.thedogapi.com/v1/images/search");    
-      if (response.ok) {
-        let jsonResponse = await response.json();
-        return jsonResponse;
-      }
-    } catch (error) {
-      console.log(error);
+const getRandomBreed = async () => {
+  try {
+    let response = await fetch("https://api.thedogapi.com/v1/images/search");
+    if (response.ok) {
+      let jsonResponse = await response.json();
+      return jsonResponse;
     }
-  };
-
-
-
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const getBreedImages = async (targetValue, fullAccess, breedList) => {
   try {
@@ -115,6 +100,9 @@ const getBreedImages = async (targetValue, fullAccess, breedList) => {
   }
 };
 
-
-
-export { axiosGetAllBreeds, axiosGetBreedByName, axiosGetAllImages, axiosGetRandomBreed };
+export {
+  axiosGetAllBreeds,
+  axiosGetBreedByName,
+  axiosGetAllImages,
+  getRandomBreed,
+};

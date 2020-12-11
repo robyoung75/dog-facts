@@ -6,41 +6,39 @@ import {
   axiosGetAllBreeds,
   axiosGetBreedByName,
   axiosGetAllImages,
-  axiosGetRandomBreed,
+  getRandomBreed,
 } from "../../functions/requests";
 
 function Dog() {
   const [axiosAllBreeds, setAxiosAllBreeds] = useState();
   const [axiosBreedByName, setAxiosBreedByName] = useState();
   const [axiosAllImages, setAxiosAllImages] = useState();
-  const [axiosRandomBreed, setAxiosRandomBreed] = useState();
+  const [randomBreed, setRandomBreed] = useState();
 
   useEffect(async () => {
     // setBreedList returns a fairly useless list of dog but no info just a
     // list. Used to populate the dropdown menu Probably can set this with full
     // access.
 
-    let reqAllBreeds = await axiosGetAllBreeds;
-    setAxiosAllBreeds(reqAllBreeds.data);
+    let resAllBreeds = await axiosGetAllBreeds;
+    setAxiosAllBreeds(resAllBreeds.data);
 
-    let reqBreedByName = await axiosGetBreedByName;
-    setAxiosBreedByName(reqBreedByName);
+    let resBreedByName = await axiosGetBreedByName;
+    setAxiosBreedByName(resBreedByName);
 
-    let reqAllImages = await axiosGetAllImages;
-    setAxiosAllImages(reqAllImages);
+    let resAllImages = await axiosGetAllImages;
+    setAxiosAllImages(resAllImages);
 
-    let reqRandomBreed = await axiosGetRandomBreed();
-    setAxiosRandomBreed(reqRandomBreed);
-
-    
+    let resRandomBreed = await getRandomBreed();
+    setRandomBreed(resRandomBreed);
   }, []);
 
   // function sets randomBreed. A click on search random dog button fires this
   // fuction returning a random image and data about a dog.
   async function handleClick(e) {
-    e.preventDefault()    
-    let reqRandomBreed = await axiosGetRandomBreed();
-    setAxiosRandomBreed(reqRandomBreed);
+    e.preventDefault();
+    let resRandomBreed = await getRandomBreed();
+    setRandomBreed(resRandomBreed);
   }
 
   // function sets breedImages. A change in the dropdown menu
@@ -54,7 +52,7 @@ function Dog() {
         handleChange={handleChange}
         axiosAllBreeds={axiosAllBreeds}
       />
-      <DogList axiosRandomBreed={axiosRandomBreed}/>
+      <DogList randomBreed={randomBreed} />
     </div>
   );
 }
