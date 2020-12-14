@@ -2,76 +2,71 @@ import React, { useEffect, useState } from "react";
 import DogButtons from "../DogButtons/DogButtons";
 import DogList from "../DogList/DogList";
 import "./Dog.css";
+import '../Header/Header';
 import {
   axiosGetAllBreeds,
-  axiosGetBreedByName,
   axiosGetAllImages,
+  axiosGetAllImages_arr2,
   getRandomBreed,
 } from "../../functions/requests";
-import { ListItemSecondaryAction } from "@material-ui/core";
+import Header from "../Header/Header";
 
 function Dog() {
+  // state using hooks
   const [axiosAllBreeds, setAxiosAllBreeds] = useState();
   const [axiosBreedByName, setAxiosBreedByName] = useState();
   const [axiosAllImages, setAxiosAllImages] = useState();
-
+  const [axiosAllImages_arr2, setAxiosAllImages_arr2] = useState();
   const [randomBreed, setRandomBreed] = useState();
+  const [joinedArray, setJoinedArray] = useState();
 
   useEffect(async () => {
-    // setBreedList returns a fairly useless list of dog but no info just a
-    // list. Used to populate the dropdown menu Probably can set this with full
-    // access.
-
+    // sets state to a list of all breeds. Data used to populate the dropdown menu
     let resAllBreeds = await axiosGetAllBreeds;
     setAxiosAllBreeds(resAllBreeds.data);
-
-    // let resBreedByName = await axiosGetBreedByName;
-    // setAxiosBreedByName(resBreedByName);
-
+    // sets state to all images. Currently only the first array is fetched. Need
+    // to fetch the second array. Currently LeonBerger is the last dog in the
+    // first array.
     let resAllImages = await axiosGetAllImages;
     setAxiosAllImages(resAllImages.data);
 
-    let resRandomBreed = await getRandomBreed();
-    setRandomBreed(resRandomBreed);
+    let arr2 = await axiosGetAllImages_arr2;
+    setAxiosAllImages_arr2(arr2.data);
   }, []);
 
   // function sets randomBreed. A click on search random dog button fires this
   // fuction returning a random image and data about a dog.
-  async function handleClick(e) {
-    e.preventDefault();
+  async function handleClick() {
+    setAxiosBreedByName(null);
     let data = await getRandomBreed();
     setRandomBreed(data);
   }
 
-  // function sets breedImages. A change in the dropdown menu
-  // fires this function returning 5 images.
   async function handleChange(e) {
+    setRandomBreed(null);
     let value = await e.target.value;
-    // let submitValue = await value.toLowerCase();
-    // let data = await axiosGetBreedByName(submitValue);
-    let breedName = axiosAllImages.map((image) =>
+    let arr1 = axiosAllImages;
+    let arr2 = axiosAllImages_arr2;
+    let arr3 = await arr1.concat(arr2);
+    setJoinedArray(arr3);
+    await arr3.map((image) =>
       image.breeds.findIndex((element) => {
         if (element.name === value) {
           setAxiosBreedByName(image);
         }
       })
     );
-    if (breedName !== -1) {
-      console.log(breedName);
-    }
   }
+
   return (
     <div className="dog">
+      <Header handleChange={handleChange} axiosAllBreeds={axiosAllBreeds} />
       <DogButtons
         handleClick={handleClick}
         handleChange={handleChange}
         axiosAllBreeds={axiosAllBreeds}
       />
-      <DogList
-        randomBreed={randomBreed}
-        axiosBreedByName={axiosBreedByName}
-        axiosAllImages={axiosAllImages}
-      />
+      <DogList randomBreed={randomBreed} axiosBreedByName={axiosBreedByName} />
     </div>
   );
 }

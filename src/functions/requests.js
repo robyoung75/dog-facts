@@ -48,9 +48,20 @@ const axiosGetAllImages = axios.get(
   }
 );
 
+const axiosGetAllImages_arr2 = axios.get(
+  `https://api.thedogapi.com/v1/images/search?page=1&limit=80&order=asc`,
+  {
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": "9d214f6b-6207-4c43-bc89-3efa18e2b42f",
+    },
+  }
+);
+
 export {
   axiosGetAllBreeds,
   axiosGetBreedByName,
   axiosGetAllImages,
+  axiosGetAllImages_arr2,
   getRandomBreed,
 };

@@ -21,12 +21,12 @@ function DogList({ randomBreed, axiosBreedByName }) {
       {axiosBreedByName
         ? axiosBreedByName.breeds.map((image) => (
             <SpecificDogBreed
-              key={Image.id}
+              key={image.id}
               name={image.name}
               bredFor={image.bred_for}
               breedGroup={image.breed_group}
               lifeSpan={image.life_span}
-              temperment={image.temperament}
+              temperament={image.temperament}
               id={image.id}
               image={axiosBreedByName.url}
             />

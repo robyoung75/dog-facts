@@ -1,7 +1,7 @@
 import React from "react";
 import "../SpecificDogBreed/SpecificDogBreed.css"
 
-function SpecificDogBreed({ name, bredFor, breedGroup, lifeSpan, temperment, id, image }) {
+function SpecificDogBreed({ name, bredFor, breedGroup, lifeSpan, temperament, id, image }) {
   return (
     <div className="specificDogBreed">
       <img src={image} alt="dog image" />
@@ -13,7 +13,7 @@ function SpecificDogBreed({ name, bredFor, breedGroup, lifeSpan, temperment, id,
           Bred For: <span>{bredFor}</span>
         </h3>
         <h3>
-          Breed Temperament: <span>{temperment}</span>
+          Breed Temperament: <span>{temperament}</span>
         </h3>
         <h3>
           Life span: <span>{lifeSpan}</span>

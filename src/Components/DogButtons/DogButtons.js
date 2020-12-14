@@ -16,21 +16,6 @@ function DogButtons({ handleClick, handleChange, axiosAllBreeds }) {
   return (
     <div className="dogButtons">
       <div className={classes.root}>
-        <div className="dogButtons__formGroup">
-          <h3>Drop Down</h3>
-
-          <select onChange={handleChange}>
-            {/* {breedList
-              ? Object.keys(breedList).map((breed) => <option key={breed}>{breed}</option>)
-              : "data is loading"} */}
-            {axiosAllBreeds
-              ? axiosAllBreeds.map((item) => (
-                  <option key={item.name}>{item.name}</option>
-                ))
-              : null}
-          </select>
-        </div>
-
         <Button variant="contained" onClick={handleClick}>
           Search Random Dog
         </Button>
