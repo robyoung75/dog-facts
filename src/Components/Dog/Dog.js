@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import DogButtons from "../DogButtons/DogButtons";
+
 import DogList from "../DogList/DogList";
 import "./Dog.css";
-import '../Header/Header';
+import "../Header/Header";
 import {
   axiosGetAllBreeds,
   axiosGetAllImages,
@@ -10,7 +10,7 @@ import {
   getRandomBreed,
 } from "../../functions/requests";
 import Header from "../Header/Header";
-
+import coverImage from "../../images/bostonTerrier.jpg";
 function Dog() {
   // state using hooks
   const [axiosAllBreeds, setAxiosAllBreeds] = useState();
@@ -19,6 +19,7 @@ function Dog() {
   const [axiosAllImages_arr2, setAxiosAllImages_arr2] = useState();
   const [randomBreed, setRandomBreed] = useState();
   const [joinedArray, setJoinedArray] = useState();
+  
 
   useEffect(async () => {
     // sets state to a list of all breeds. Data used to populate the dropdown menu
@@ -32,41 +33,25 @@ function Dog() {
 
     let arr2 = await axiosGetAllImages_arr2;
     setAxiosAllImages_arr2(arr2.data);
+
+    // let data = await getRandomBreed();
+    // setRandomBreed(data);
   }, []);
-
-  // function sets randomBreed. A click on search random dog button fires this
-  // fuction returning a random image and data about a dog.
-  async function handleClick() {
-    setAxiosBreedByName(null);
-    let data = await getRandomBreed();
-    setRandomBreed(data);
-  }
-
-  async function handleChange(e) {
-    setRandomBreed(null);
-    let value = await e.target.value;
-    let arr1 = axiosAllImages;
-    let arr2 = axiosAllImages_arr2;
-    let arr3 = await arr1.concat(arr2);
-    setJoinedArray(arr3);
-    await arr3.map((image) =>
-      image.breeds.findIndex((element) => {
-        if (element.name === value) {
-          setAxiosBreedByName(image);
-        }
-      })
-    );
-  }
 
   return (
     <div className="dog">
-      <Header handleChange={handleChange} axiosAllBreeds={axiosAllBreeds} />
-      <DogButtons
-        handleClick={handleClick}
-        handleChange={handleChange}
+      <Header
+        setRandomBreed={setRandomBreed}
+        setJoinedArray={setJoinedArray}
         axiosAllBreeds={axiosAllBreeds}
+        setAxiosBreedByName={setAxiosBreedByName}
+        axiosAllImages={axiosAllImages}
+        axiosAllImages_arr2={axiosAllImages_arr2}
       />
+    
+    
       <DogList randomBreed={randomBreed} axiosBreedByName={axiosBreedByName} />
+      {/* {!axiosBreedByName && !randomBreed ? <h1>Welcome</h1> : null} */}
     </div>
   );
 }

@@ -1,10 +1,9 @@
 .dog {
   display: flex;
   flex-direction: column;
-  
+  background-color: #ddb892;
+ 
+ 
   
 }
 
-.dog__button {
-  background-color: red;
-}
