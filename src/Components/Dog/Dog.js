@@ -10,7 +10,7 @@ import {
   getRandomBreed,
 } from "../../functions/requests";
 import Header from "../Header/Header";
-import coverImage from "../../images/bostonTerrier.jpg";
+import coverImage from "../../images/bt.jpg";
 function Dog() {
   // state using hooks
   const [axiosAllBreeds, setAxiosAllBreeds] = useState();
@@ -19,7 +19,6 @@ function Dog() {
   const [axiosAllImages_arr2, setAxiosAllImages_arr2] = useState();
   const [randomBreed, setRandomBreed] = useState();
   const [joinedArray, setJoinedArray] = useState();
-  
 
   useEffect(async () => {
     // sets state to a list of all breeds. Data used to populate the dropdown menu
@@ -48,10 +47,15 @@ function Dog() {
         axiosAllImages={axiosAllImages}
         axiosAllImages_arr2={axiosAllImages_arr2}
       />
-    
-    
+
       <DogList randomBreed={randomBreed} axiosBreedByName={axiosBreedByName} />
-      {/* {!axiosBreedByName && !randomBreed ? <h1>Welcome</h1> : null} */}
+
+      {!axiosBreedByName && !randomBreed ? (
+        <div className="dog__coverImage">
+          <h1>The Dog App</h1>
+          <img src={coverImage}></img>
+        </div>
+      ) : null}
     </div>
   );
 }

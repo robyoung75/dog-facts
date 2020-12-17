@@ -7,3 +7,25 @@
   
 }
 
+.dog__coverImage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.dog__coverImage > h1 {
+  color: #7f5539;
+  text-align: center;
+  
+}
+
+img {
+  width: 50%;
+  height: auto;
+  border-radius: 5%;
+  margin: 3rem;  
+  
+}

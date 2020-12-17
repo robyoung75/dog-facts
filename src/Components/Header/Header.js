@@ -47,9 +47,9 @@ function Header({
   };
   return (
     <div className="header">
-      <ul className={!isActive ? "header__list" : "header__listDropdown"}>
-        <li onClick={handleClick}>Search Random Breed</li>
-        <li>
+      <div className={!isActive ? "header__list" : "header__listDropdown"}>
+        <p onClick={handleClick}>Search Random Breed</p>
+        <p>
           <span style={{ fontSize: "15px", paddingRight: "5px" }}>
             Select a breed
           </span>
@@ -60,8 +60,8 @@ function Header({
                 ))
               : null}
           </select>
-        </li>
-      </ul>
+        </p>
+      </div>
       <div
         className={!isActive ? "header__btn" : "header__btnActive"}
         onClick={headerDropdown}
