@@ -11,6 +11,7 @@ import {
 } from "../../functions/requests";
 import Header from "../Header/Header";
 import coverImage from "../../images/bt.jpg";
+import { Col, Container, Image, Row } from "react-bootstrap";
 function Dog() {
   // state using hooks
   const [axiosAllBreeds, setAxiosAllBreeds] = useState();
@@ -47,13 +48,11 @@ function Dog() {
         axiosAllImages={axiosAllImages}
         axiosAllImages_arr2={axiosAllImages_arr2}
       />
-
-      <DogList randomBreed={randomBreed} axiosBreedByName={axiosBreedByName} />
-
+      <DogList randomBreed={randomBreed} axiosBreedByName={axiosBreedByName} />{" "}
       {!axiosBreedByName && !randomBreed ? (
         <div className="dog__coverImage">
           <h1>The Dog App</h1>
-          <img src={coverImage}></img>
+          <Image fluid src={coverImage}></Image>
         </div>
       ) : null}
     </div>

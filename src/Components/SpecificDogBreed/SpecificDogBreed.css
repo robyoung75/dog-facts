@@ -1,24 +1,13 @@
-.specificDogBreed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+
+
+.row {
+  justify-content: center;
   align-items: center;
+  /* background-color: orange; */
 }
 
-.specificDogBreed__bottom {
-  width: 80%;
-
-  padding: 10px;
+h3 {
+  text-align: center;
 }
 
-.specificDogBreed__bottom > h3 > span {
-  font-weight: lighter;
-}
 
-.specificDogBreed > img {
-  margin: 1rem;
-  width: 80%;
-  height: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 0.5rem;
-}

@@ -122,8 +122,14 @@
 select {
   background-color: #ede0d4;
   padding: 5px;
-  width: 50%;
+  width: 75%;
   border-radius: 8px;
   color: #7f5539;
   cursor: pointer;
+  font-size: 10px;
+  
+}
+
+option {
+  font-size: 15px;
 }
